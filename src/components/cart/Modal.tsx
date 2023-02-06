@@ -2,7 +2,9 @@ import * as React from "react";
 import { CartPromoCode, CartSummary } from ".";
 import Image1 from "../../images/cat-street-creme_2000.webp";
 import Image2 from "../../images/cat-street-olive_2000.webp";
+import Image3 from "../../images/cat-street-hero-olive_2000.webp";
 import { CartItem as CartItemType } from "../../types";
+import CartFeatured from "./Featured";
 import CartItem from "./Item";
 
 const CartModal: React.FC = () => {
@@ -20,6 +22,15 @@ const CartModal: React.FC = () => {
       image: Image2,
     },
   ]);
+
+  const featuredItem: CartItemType = {
+    title: "Only For Cool Cats...",
+    description: "Add the “Catnip” cover to your order and save 5%",
+    price: 122.55,
+    discountPrice: 129,
+    quantity: 1,
+    image: Image3,
+  };
 
   return true ? (
     <div className="cartModal">
@@ -49,6 +60,7 @@ const CartModal: React.FC = () => {
                 })}
               </div>
               <CartPromoCode />
+              <CartFeatured item={featuredItem} />
             </div>
             <CartSummary />
           </>
