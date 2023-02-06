@@ -1,0 +1,72 @@
+.cartModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  &--main {
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    max-width: 100vw;
+    width: 375px;
+    padding: 56px 15px 40px 12px;
+  }
+  &--top {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  &--close {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    display: flex;
+    svg {
+      width: 36px;
+    }
+  }
+  &--title {
+    font-family: "CooperBT", serif;
+    font-size: 35px;
+    font-weight: 300;
+    line-height: 1.17;
+  }
+  &--full {
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 40px;
+  }
+  &--items {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    margin-bottom: 28px;
+  }
+  &--empty {
+    font-size: 20px;
+    font-weight: 300;
+    text-align: center;
+    max-width: 236px;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+  &--overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+  }
+}

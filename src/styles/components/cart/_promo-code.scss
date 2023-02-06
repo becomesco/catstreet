@@ -1,0 +1,98 @@
+.cartPromoCode {
+  padding: 0 5px 0 8px;
+  margin-bottom: 45px;
+  &--enter {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    font-size: 18px;
+    font-size: 300;
+    line-height: 1.4;
+    font-weight: 300;
+    span {
+      margin-right: 6px;
+    }
+    button {
+      color: #777777;
+      text-decoration: underline;
+      transition: color 0.25s;
+      &:hover,
+      &:focus-visible {
+        color: #000;
+      }
+    }
+  }
+  &--form {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: start;
+    gap: 15px;
+    margin-bottom: 15px;
+    label {
+      grid-column: span 2;
+    }
+    input {
+      display: flex;
+      width: 100%;
+      border: 1px solid #a0a0a0;
+      border-radius: 2px;
+      padding: 8px 7px 6px;
+      font-size: 18px;
+      line-height: 1.4;
+      font-weight: 300;
+      transition: all 0.25s;
+      height: 40px;
+      &.error {
+        border-color: #ff0000;
+        background-color: #ffe5e5;
+      }
+      &:focus {
+        outline: none;
+      }
+    }
+    &-error {
+      margin-left: 4px;
+      font-size: 10px;
+      line-height: 1.25;
+      color: #ff0000;
+    }
+    button {
+      background-color: #f1eee9;
+      border: 1px solid #a0a0a0;
+      padding: 7px 20px 3px;
+      border-radius: 4px;
+      font-size: 20px;
+      text-transform: uppercase;
+      font-weight: 500;
+      height: 40px;
+      transition: background-color 0.25s;
+      &:hover,
+      &:focus-visible {
+        background-color: darken(#f1eee9, 5%);
+      }
+    }
+  }
+  &--coupons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+  }
+  &--coupon {
+    display: flex;
+    align-items: center;
+    background-color: #f1eee9;
+    border-radius: 12px;
+    padding: 2px 10px;
+    span {
+      font-size: 14px;
+      line-height: 1.8;
+      font-weight: 300;
+      text-transform: uppercase;
+      margin-right: 5px;
+    }
+    svg {
+      width: 14px;
+      height: 14px;
+    }
+  }
+}

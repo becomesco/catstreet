@@ -1,0 +1,45 @@
+.cartSummary {
+  padding: 0 5px 0 8px;
+  margin-top: auto;
+  &--rows {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 7px;
+    margin-bottom: 22px;
+  }
+  &--row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 1.4;
+    &_bold {
+      margin-top: 5px;
+      font-size: 25px;
+      line-height: 1;
+      font-weight: 500;
+      text-transform: uppercase;
+      .cartModal--summary-row {
+        &-value {
+          display: flex;
+          span {
+            color: #939393;
+            margin-right: 14px;
+          }
+        }
+      }
+    }
+  }
+  &--btn {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 9px 0;
+    background-color: #010101;
+    border-radius: 4px;
+    filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.25));
+    color: #fff;
+    font-size: 30px;
+  }
+}

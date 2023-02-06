@@ -1,9 +1,10 @@
 import * as React from "react";
 import type { HeadFC, PageProps } from "gatsby";
-import Layout from "../components/layout";
+import { Layout } from "../components/";
 import CartIcon from "../icons/cart.svg";
 
 const IndexPage: React.FC<PageProps> = () => {
+  // onClick={openModal}
   return (
     <Layout className="homePage">
       <button className="cartModalBtn">
