@@ -1,0 +1,24 @@
+.homePage {
+  padding: 20px;
+  .cartModalBtn {
+    display: flex;
+    align-items: center;
+    background-color: #d9d9d9;
+    border-radius: 4px;
+    padding: 7px;
+    transition: background-color 0.25s;
+    &:hover,
+    &:focus-visible {
+      background-color: darken(#d9d9d9, 5%);
+    }
+    span {
+      font-size: 14px;
+      font-weight: 500;
+      margin-right: 6px;
+    }
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
