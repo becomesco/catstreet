@@ -1,37 +1,10 @@
 import * as React from "react";
 import { CartPromoCode, CartSummary } from ".";
-import Image1 from "../../images/cat-street-creme_2000.webp";
-import Image2 from "../../images/cat-street-olive_2000.webp";
-import Image3 from "../../images/cat-street-hero-olive_2000.webp";
-import { CartItem as CartItemType } from "../../types";
+import { cart, featuredItem } from "../../data/cart";
 import CartFeatured from "./Featured";
 import CartItem from "./Item";
 
 const CartModal: React.FC = () => {
-  const [cartItems, setCartItems] = React.useState<CartItemType[]>([
-    {
-      title: "Bouclé Bungalow “Creme” Cover",
-      price: 239,
-      quantity: 1,
-      image: Image1,
-    },
-    {
-      title: "Replacement Cover in “Catnip”",
-      price: 129,
-      quantity: 2,
-      image: Image2,
-    },
-  ]);
-
-  const featuredItem: CartItemType = {
-    title: "Only For Cool Cats...",
-    description: "Add the “Catnip” cover to your order and save 5%",
-    price: 122.55,
-    discountPrice: 129,
-    quantity: 1,
-    image: Image3,
-  };
-
   return true ? (
     <div className="cartModal">
       <div className="cartModal--main">
@@ -51,11 +24,11 @@ const CartModal: React.FC = () => {
           </button>
           <div className="cartModal--title">Your Cart</div>
         </div>
-        {cartItems.length > 0 ? (
+        {cart.items.length > 0 ? (
           <>
             <div className="cartModal--full">
               <div className="cartModal--items">
-                {cartItems.map((item, index) => {
+                {cart.items.map((item, index) => {
                   return <CartItem item={item} key={index} />;
                 })}
               </div>

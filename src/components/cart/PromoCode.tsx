@@ -1,25 +1,27 @@
 import * as React from "react";
+import { cart } from "../../data/cart";
 import { workingCoupons } from "../../data/coupons";
+import { CartCoupon } from "../../types";
 
 const CartPromoCode: React.FC = () => {
   const [showCoupons, setShowCoupons] = React.useState(false);
-  const [coupons, setCoupons] = React.useState<string[]>([]);
+  const [coupons, setCoupons] = React.useState<CartCoupon[]>(cart.coupons);
   const [couponValue, setCouponValue] = React.useState("");
   const [isError, setIsError] = React.useState(false);
 
   const handleAddCoupon = () => {
     const isCouponAdded = coupons.find(
-      (e) => e.toLowerCase() === couponValue.toLowerCase()
+      (e) => e.code.toLowerCase() === couponValue.toLowerCase()
     );
 
     if (isCouponAdded) {
       setIsError(true);
     } else {
-      const isCouponWorking = workingCoupons.find(
+      const workingCoupon = workingCoupons.find(
         (e) => e.code.toLowerCase() === couponValue.toLowerCase()
       );
-      if (isCouponWorking) {
-        setCoupons([...coupons, couponValue]);
+      if (workingCoupon) {
+        setCoupons([...coupons, workingCoupon]);
         setIsError(false);
         setCouponValue("");
       } else {
@@ -29,7 +31,7 @@ const CartPromoCode: React.FC = () => {
   };
 
   const handleRemoveCoupon = (coupon: string) => {
-    setCoupons(coupons.filter((e) => e.toLowerCase() !== coupon.toLowerCase()));
+    setCoupons(coupons.filter((e) => e.code.toLowerCase() !== coupon.toLowerCase()));
   };
 
   return (
@@ -82,9 +84,9 @@ const CartPromoCode: React.FC = () => {
                   <button
                     key={index}
                     className="cartPromoCode--coupon"
-                    onClick={() => handleRemoveCoupon(item)}
+                    onClick={() => handleRemoveCoupon(item.code)}
                   >
-                    <span>{item}</span>
+                    <span>{item.code}</span>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none">
                       <path
                         fill="#000"
