@@ -40,6 +40,11 @@
         font-weight: 300;
         color: #4b4b4b;
         text-decoration: underline;
+        transition: color 0.25s;
+        &:hover,
+        &:focus-visible {
+          color: #000;
+        }
       }
     }
     &-shippings {
@@ -89,6 +94,11 @@
       font-size: 20px;
       font-weight: 300;
       color: #4b4b4b;
+      transition: color 0.25s;
+      &:hover,
+      &:focus-visible {
+        color: #000;
+      }
     }
   }
   &--paymentDetails {
