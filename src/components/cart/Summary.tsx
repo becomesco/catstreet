@@ -49,7 +49,11 @@ const CartSummary: React.FC<Props> = ({
           <div className="cartSummary--row-title">Total</div>
           <div className="cartSummary--row-value">
             <span>AUD</span> $
-            {(subTotal + shippingMethod.value - discounts).toFixed(2)}
+            {(
+              subTotal +
+              (hideLink ? shippingMethod.value : 0) -
+              discounts
+            ).toFixed(2)}
           </div>
         </div>
       </div>
