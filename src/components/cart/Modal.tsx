@@ -1,11 +1,13 @@
 import * as React from "react";
 import { CartPromoCode, CartSummary } from ".";
-import { cart, featuredItem } from "../../data/cart";
+import { cart, featuredItem, useGlobalState } from "../../data/cart";
 import CartFeatured from "./Featured";
 import CartItem from "./Item";
 
 const CartModal: React.FC = () => {
-  return true ? (
+  const [state, setState] = useGlobalState();
+
+  return state.showCartModal ? (
     <div className="cartModal">
       <div className="cartModal--main">
         <div className="cartModal--top">

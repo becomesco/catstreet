@@ -1,0 +1,132 @@
+.checkoutForm {
+  &--title {
+    font-size: 40px;
+    font-weight: 500;
+    margin-bottom: 18px;
+  }
+  &--form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 52px 38px;
+  }
+
+  &--tel {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 38px;
+
+    &-info {
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 1.32;
+      color: #585858;
+      padding-right: 33px;
+    }
+  }
+  &--deliveryDetails {
+    .selectInput {
+      width: 50%;
+      margin-bottom: 35px;
+    }
+    &-address {
+      margin-bottom: 55px;
+      &-change {
+        margin-top: 11px;
+        display: flex;
+        justify-content: flex-end;
+        margin-left: auto;
+        font-size: 20px;
+        line-height: 0.5;
+        font-weight: 300;
+        color: #4b4b4b;
+        text-decoration: underline;
+      }
+    }
+    &-shippings {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 5px;
+      margin-bottom: 12px;
+      label {
+        display: flex;
+        align-items: center;
+        padding: 6px;
+        border-bottom: 1px dashed #000000;
+        color: #424141;
+        font-size: 25px;
+        cursor: pointer;
+        .check {
+          position: relative;
+          background-color: #fff;
+          border: 1px solid #000;
+          border-radius: 50%;
+          width: 24px;
+          height: 24px;
+          margin-right: 18px;
+          &.active {
+            &::after {
+              content: "";
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              width: 14px;
+              height: 14px;
+              border-radius: 50%;
+              background-color: #000;
+            }
+          }
+        }
+        .price {
+          text-align: right;
+          margin-left: auto;
+        }
+      }
+    }
+    &-link {
+      display: flex;
+      justify-content: flex-end;
+      font-size: 20px;
+      font-weight: 300;
+      color: #4b4b4b;
+    }
+  }
+  &--paymentDetails {
+    &-options {
+      background: #f8f8f8;
+      border: 1px solid #000000;
+      border-radius: 3px;
+    }
+    button {
+      display: flex;
+      padding: 4px 5px;
+      width: 100%;
+      &:not(:last-of-type) {
+        border-bottom: 1px solid #000000;
+      }
+      img {
+        width: 145px;
+        object-fit: contain;
+      }
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    &--form {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    &--email {
+      grid-column: span 2;
+    }
+    &--tel {
+      grid-template-columns: repeat(2, 1fr);
+      grid-column: span 2;
+    }
+    &--deliveryDetails {
+      grid-column: span 2;
+    }
+    &--paymentDetails {
+      grid-column: span 2;
+    }
+  }
+}

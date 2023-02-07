@@ -1,0 +1,68 @@
+.checkoutPage {
+  padding: 36px 12px 100px;
+  background: radial-gradient(
+    50% 50% at 50% 50%,
+    rgba(241, 238, 233, 0.16) 0%,
+    #f1eee9 100%
+  );
+  &--logo {
+    position: absolute;
+    top: 48px;
+    left: 54px;
+    display: none;
+    img {
+      width: 181px;
+    }
+  }
+  &--title {
+    font-family: "CooperBT", serif;
+    font-size: 60px;
+    font-weight: 300;
+    text-align: center;
+    margin-bottom: 100px;
+  }
+  &--grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 60px;
+    max-width: 1205px;
+    margin: 0 auto 100px;
+  }
+  &--footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    &-title {
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 1.32;
+      margin-bottom: 9px;
+      color: #585858;
+    }
+    &-logos {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      img {
+        width: auto;
+        max-height: 70px;
+        object-fit: contain;
+      }
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    &--logo {
+      display: flex;
+    }
+    &--title {
+      margin-bottom: 154px;
+    }
+    &--grid {
+      grid-template-columns: 1fr 375px;
+      gap: 118px;
+      margin-bottom: 154px;
+    }
+  }
+}

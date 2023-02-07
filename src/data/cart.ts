@@ -1,7 +1,23 @@
+import { useState } from "react";
 import { CartCoupon, CartItem } from "../types";
 import Image1 from "../images/cat-street-creme_2000.webp";
 import Image2 from "../images/cat-street-olive_2000.webp";
 import Image3 from "../images/cat-street-hero-olive_2000.webp";
+
+interface GlobalState {
+  showCartModal: boolean;
+}
+
+export const useGlobalState = (): [
+  GlobalState,
+  (newState: GlobalState) => void
+] => {
+  const [state, setState] = useState({
+    showCartModal: false,
+  } as GlobalState);
+
+  return [state, setState];
+};
 
 export const cart: {
   items: CartItem[];

@@ -1,6 +1,11 @@
+import { Link } from "gatsby";
 import * as React from "react";
 
-const CartSummary: React.FC = () => {
+interface Props {
+  hideLink?: boolean;
+}
+
+const CartSummary: React.FC<Props> = ({ hideLink }) => {
   return (
     <div className="cartSummary">
       <div className="cartSummary--rows">
@@ -23,7 +28,11 @@ const CartSummary: React.FC = () => {
           </div>
         </div>
       </div>
-      <button className="cartSummary--btn">Checkout now</button>
+      {!hideLink && (
+        <Link to="/checkout" className="cartSummary--btn">
+          Checkout now
+        </Link>
+      )}
     </div>
   );
 };

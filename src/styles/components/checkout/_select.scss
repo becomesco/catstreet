@@ -1,0 +1,59 @@
+.selectInput {
+  &--select {
+    position: relative;
+    border-bottom: 1px solid #000;
+    margin-bottom: 9px;
+  }
+  &--toggler {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 42px;
+    background: rgba(255, 255, 255, 0.5);
+    border: 0.5px solid #9c9c9c;
+    border-radius: 2px;
+    width: 100%;
+    padding: 4px 15px 4px 10px;
+    img {
+      width: 24px;
+      object-fit: contain;
+      margin-right: 11px;
+    }
+    &-val {
+      font-size: 25px;
+      color: #000;
+      margin-right: 11px;
+    }
+    svg {
+      width: 15px;
+    }
+  }
+  &--dropdown {
+    position: absolute;
+    z-index: 10;
+    bottom: -6px;
+    left: 0;
+    width: 100%;
+    transform: translateY(100%);
+    background-color: #fff;
+    border: 0.5px solid #9c9c9c;
+    padding: 4px 0;
+    button {
+      display: flex;
+      align-items: center;
+      padding: 6px;
+      width: 100%;
+      font-size: 20px;
+      color: #424141;
+    }
+  }
+  &--label {
+    font-size: 20px;
+    line-height: 0.5;
+    margin-left: 6px;
+    color: #606060;
+    font-weight: 300;
+    pointer-events: none;
+    user-select: none;
+  }
+}
