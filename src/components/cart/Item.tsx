@@ -1,11 +1,40 @@
 import * as React from "react";
 import { CartItem as CartItemType } from "../../types";
+import { connect } from "react-redux";
 
 interface Props {
   item: CartItemType;
+  dispatch: any;
 }
 
-const CartItem: React.FC<Props> = ({ item }) => {
+const CartItem: React.FC<Props> = ({ item, dispatch }) => {
+  const handleRemoveItem = () => {
+    if (item.quantity === 1) {
+      const result = confirm(
+        "Are you sure you want to remove this product from cart?"
+      );
+
+      if (result) {
+        dispatch({
+          type: "REMOVE_ITEM",
+          item,
+        });
+      }
+    } else {
+      dispatch({
+        type: "REMOVE_ITEM",
+        item,
+      });
+    }
+  };
+
+  const handleAddItem = () => {
+    dispatch({
+      type: "ADD_ITEM",
+      item,
+    });
+  };
+
   return (
     <div className="cartItem">
       <img src={item.image} alt={item.title} className="cartItem--image" />
@@ -13,7 +42,11 @@ const CartItem: React.FC<Props> = ({ item }) => {
         <div className="cartItem--title">{item.title}</div>
         <div className="cartItem--asd">
           <div className="cartItem--actions">
-            <button className="cartItem--action" aria-label="Add item">
+            <button
+              className="cartItem--action"
+              aria-label="Remove item"
+              onClick={handleRemoveItem}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="12"
@@ -23,8 +56,17 @@ const CartItem: React.FC<Props> = ({ item }) => {
                 <path fill="#000" d="M.402.047h11v1h-11z" />
               </svg>
             </button>
-            <input type="number" value="1" className="cartItem--input" />
-            <button className="cartItem--action" aria-label="Remove item">
+            <input
+              type="number"
+              value={item.quantity}
+              disabled
+              className="cartItem--input"
+            />
+            <button
+              className="cartItem--action"
+              aria-label="Add item"
+              onClick={handleAddItem}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="9"
@@ -45,4 +87,8 @@ const CartItem: React.FC<Props> = ({ item }) => {
   );
 };
 
-export default CartItem;
+const mapStateToProps = () => {
+  return {};
+};
+
+export default connect(mapStateToProps)(CartItem);

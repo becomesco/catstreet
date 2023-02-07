@@ -1,23 +1,23 @@
 import * as React from "react";
-import type { HeadFC, PageProps } from "gatsby";
+import type { HeadFC } from "gatsby";
 import { Layout } from "../components/";
 import CartIcon from "../icons/cart.svg";
-import { useGlobalState } from "../data/cart";
+import { connect } from "react-redux";
 
-const IndexPage: React.FC<PageProps> = () => {
-  const [state, setState] = useGlobalState();
+interface PageProps {
+  dispatch: any;
+}
+
+const IndexPage: React.FC<PageProps> = ({ dispatch }) => {
+  const handleOpenModal = () => {
+    dispatch({
+      type: "OPEN_MODAL",
+    });
+  };
 
   return (
     <Layout className="homePage">
-      <button
-        className="cartModalBtn"
-        onClick={() => {
-          setState({
-            ...state,
-            showCartModal: true,
-          });
-        }}
-      >
+      <button className="cartModalBtn" onClick={handleOpenModal}>
         <span>Your cart</span>
         <CartIcon />
       </button>
@@ -25,6 +25,12 @@ const IndexPage: React.FC<PageProps> = () => {
   );
 };
 
-export default IndexPage;
+const mapStateToProps = (state: any) => {
+  return {
+    isModalOpen: state.isModalOpen,
+  };
+};
+
+export default connect(mapStateToProps)(IndexPage);
 
 export const Head: HeadFC = () => <title>Home Page</title>;

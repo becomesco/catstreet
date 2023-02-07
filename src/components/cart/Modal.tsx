@@ -1,17 +1,33 @@
 import * as React from "react";
 import { CartPromoCode, CartSummary } from ".";
-import { cart, featuredItem, useGlobalState } from "../../data/cart";
 import CartFeatured from "./Featured";
 import CartItem from "./Item";
+import { connect } from "react-redux";
+import { featuredItem } from "../../store/reducers/cart-reducer";
+import { CartItem as CartItemType } from "../../types";
 
-const CartModal: React.FC = () => {
-  const [state, setState] = useGlobalState();
+interface Props {
+  isModalOpen: boolean;
+  cartItems: CartItemType[];
+  dispatch: any;
+}
 
-  return state.showCartModal ? (
-    <div className="cartModal">
+const CartModal: React.FC<Props> = ({ isModalOpen, dispatch, cartItems }) => {
+  const handleCloseModal = () => {
+    dispatch({
+      type: "CLOSE_MODAL",
+    });
+  };
+
+  return (
+    <div className={`cartModal ${isModalOpen ? "cartModal_visible" : ""}`}>
       <div className="cartModal--main">
         <div className="cartModal--top">
-          <button className="cartModal--close" aria-label="Close cart modal">
+          <button
+            className="cartModal--close"
+            aria-label="Close cart modal"
+            onClick={handleCloseModal}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="30"
@@ -26,11 +42,11 @@ const CartModal: React.FC = () => {
           </button>
           <div className="cartModal--title">Your Cart</div>
         </div>
-        {cart.items.length > 0 ? (
+        {cartItems.length > 0 ? (
           <>
             <div className="cartModal--full">
               <div className="cartModal--items">
-                {cart.items.map((item, index) => {
+                {cartItems.map((item, index) => {
                   return <CartItem item={item} key={index} />;
                 })}
               </div>
@@ -45,11 +61,16 @@ const CartModal: React.FC = () => {
           </div>
         )}
       </div>
-      <div className="cartModal--overlay" />
+      <div className="cartModal--overlay" onClick={handleCloseModal} />
     </div>
-  ) : (
-    <></>
   );
 };
 
-export default CartModal;
+const mapStateToProps = (state: any) => {
+  return {
+    isModalOpen: state.isModalOpen,
+    cartItems: state.cartItems,
+  };
+};
+
+export default connect(mapStateToProps)(CartModal);

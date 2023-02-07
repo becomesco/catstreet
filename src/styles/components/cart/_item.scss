@@ -41,6 +41,9 @@
     border-right: 1px solid #afafaf;
     font-size: 15px;
     text-align: center;
+    &:disabled {
+      color: #000;
+    }
     &:focus {
       outline: none;
     }

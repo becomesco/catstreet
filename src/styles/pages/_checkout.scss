@@ -5,6 +5,9 @@
     rgba(241, 238, 233, 0.16) 0%,
     #f1eee9 100%
   );
+  & ~ .cartModal {
+    display: none;
+  }
   &--logo {
     position: absolute;
     top: 48px;

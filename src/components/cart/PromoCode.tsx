@@ -1,11 +1,15 @@
 import * as React from "react";
-import { cart } from "../../data/cart";
+import { connect } from "react-redux";
 import { workingCoupons } from "../../data/coupons";
 import { CartCoupon } from "../../types";
 
-const CartPromoCode: React.FC = () => {
+interface Props {
+  coupons: CartCoupon[];
+  dispatch: any;
+}
+
+const CartPromoCode: React.FC<Props> = ({ coupons, dispatch }) => {
   const [showCoupons, setShowCoupons] = React.useState(false);
-  const [coupons, setCoupons] = React.useState<CartCoupon[]>(cart.coupons);
   const [couponValue, setCouponValue] = React.useState("");
   const [isError, setIsError] = React.useState(false);
 
@@ -21,7 +25,10 @@ const CartPromoCode: React.FC = () => {
         (e) => e.code.toLowerCase() === couponValue.toLowerCase()
       );
       if (workingCoupon) {
-        setCoupons([...coupons, workingCoupon]);
+        dispatch({
+          type: "ADD_COUPON",
+          coupon: workingCoupon,
+        });
         setIsError(false);
         setCouponValue("");
       } else {
@@ -30,8 +37,11 @@ const CartPromoCode: React.FC = () => {
     }
   };
 
-  const handleRemoveCoupon = (coupon: string) => {
-    setCoupons(coupons.filter((e) => e.code.toLowerCase() !== coupon.toLowerCase()));
+  const handleRemoveCoupon = (coupon: CartCoupon) => {
+    dispatch({
+      type: "REMOVE_COUPON",
+      coupon,
+    });
   };
 
   return (
@@ -84,7 +94,7 @@ const CartPromoCode: React.FC = () => {
                   <button
                     key={index}
                     className="cartPromoCode--coupon"
-                    onClick={() => handleRemoveCoupon(item.code)}
+                    onClick={() => handleRemoveCoupon(item)}
                   >
                     <span>{item.code}</span>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none">
@@ -104,4 +114,10 @@ const CartPromoCode: React.FC = () => {
   );
 };
 
-export default CartPromoCode;
+const mapStateToProps = (state: any) => {
+  return {
+    coupons: state.coupons,
+  };
+};
+
+export default connect(mapStateToProps)(CartPromoCode);

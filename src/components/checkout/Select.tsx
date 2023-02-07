@@ -29,12 +29,12 @@ const CheckoutSelect: React.FC<Props> = ({
             height="11"
             fill="none"
           >
-            <g clip-path="url(#a)">
+            <g clipPath="url(#a)">
               <path
                 stroke="#231F20"
-                stroke-linecap="round"
-                stroke-miterlimit="10"
-                stroke-width="1.5"
+                strokeLinecap="round"
+                strokeMiterlimit="10"
+                strokeWidth="1.5"
                 d="m1.218 1.108 5.735 7.888c.283.39.905.39 1.188 0l5.746-7.888"
               />
             </g>

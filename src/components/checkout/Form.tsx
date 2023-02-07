@@ -4,15 +4,36 @@ import PayPalLogo from "../../images/paypal.jpg";
 import CardLogo from "../../images/card.jpg";
 import CheckoutText from "./Text";
 import { Link } from "gatsby";
+import { connect } from "react-redux";
+import { CartShipping } from "../../types";
 
-const CheckoutForm: React.FC = () => {
+interface Props {
+  shippingMethod: CartShipping;
+  dispatch: any;
+}
+
+const CheckoutForm: React.FC<Props> = ({ shippingMethod, dispatch }) => {
   const [email, setEmail] = React.useState("");
   const [tel, setTel] = React.useState("");
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
   const [country, setCountry] = React.useState("Australia");
-  const [shipping, setShipping] = React.useState("standard");
   const [address, setAddress] = React.useState("");
+
+  const shippings: CartShipping[] = [
+    {
+      label: "Free Shipping",
+      value: 0,
+    },
+    {
+      label: "Standard Shipping",
+      value: 10,
+    },
+    {
+      label: "Express Shipping",
+      value: 25.3,
+    },
+  ];
 
   return (
     <div className="checkoutForm">
@@ -86,52 +107,31 @@ const CheckoutForm: React.FC = () => {
             </button>
           </div>
           <div className="checkoutForm--deliveryDetails-shippings">
-            <label>
-              <input
-                type="radio"
-                name="shippings"
-                value="free"
-                className="sr-only"
-                onChange={() => {
-                  setShipping("free");
-                }}
-              />
-              <div className={`check ${shipping === "free" ? "active" : ""}`} />
-              <span className="label">Free Shipping</span>
-              <span className="price">$0.00</span>
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="shippings"
-                value="standard"
-                className="sr-only"
-                onChange={() => {
-                  setShipping("standard");
-                }}
-              />
-              <div
-                className={`check ${shipping === "standard" ? "active" : ""}`}
-              />
-              <span className="label">Standard Shipping</span>
-              <span className="price">$10.00</span>
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="shippings"
-                value="express"
-                className="sr-only"
-                onChange={() => {
-                  setShipping("express");
-                }}
-              />
-              <div
-                className={`check ${shipping === "express" ? "active" : ""}`}
-              />
-              <span className="label">Express Shipping</span>
-              <span className="price">$25.30</span>
-            </label>
+            {shippings.map((e, index) => {
+              return (
+                <label key={index}>
+                  <input
+                    type="radio"
+                    name="shippings"
+                    value={e.label}
+                    className="sr-only"
+                    onChange={() => {
+                      dispatch({
+                        type: "SET_SHIPPING",
+                        shippingMethod: e,
+                      });
+                    }}
+                  />
+                  <div
+                    className={`check ${
+                      shippingMethod.label === e.label ? "active" : ""
+                    }`}
+                  />
+                  <span className="label">{e.label}</span>
+                  <span className="price">${e.value.toFixed(2)}</span>
+                </label>
+              );
+            })}
           </div>
           <Link to="/" className="checkoutForm--deliveryDetails-link">
             about shipping
@@ -153,4 +153,10 @@ const CheckoutForm: React.FC = () => {
   );
 };
 
-export default CheckoutForm;
+const mapStateToProps = (state: any) => {
+  return {
+    shippingMethod: state.shippingMethod,
+  };
+};
+
+export default connect(mapStateToProps)(CheckoutForm);
