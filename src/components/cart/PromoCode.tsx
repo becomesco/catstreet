@@ -1,4 +1,5 @@
 import * as React from "react";
+import { workingCoupons } from "../../data/coupons";
 
 const CartPromoCode: React.FC = () => {
   const [showCoupons, setShowCoupons] = React.useState(false);
@@ -14,9 +15,16 @@ const CartPromoCode: React.FC = () => {
     if (isCouponAdded) {
       setIsError(true);
     } else {
-      setCoupons([...coupons, couponValue]);
-      setCouponValue("");
-      setIsError(false);
+      const isCouponWorking = workingCoupons.find(
+        (e) => e.code.toLowerCase() === couponValue.toLowerCase()
+      );
+      if (isCouponWorking) {
+        setCoupons([...coupons, couponValue]);
+        setIsError(false);
+        setCouponValue("");
+      } else {
+        setIsError(true);
+      }
     }
   };
 
