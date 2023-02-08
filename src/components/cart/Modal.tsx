@@ -5,6 +5,7 @@ import CartItem from "./Item";
 import { connect } from "react-redux";
 import { featuredItem } from "../../store/reducers/cart-reducer";
 import { CartItem as CartItemType } from "../../types";
+import { gsap } from "gsap";
 
 interface Props {
   isModalOpen: boolean;
@@ -18,6 +19,27 @@ const CartModal: React.FC<Props> = ({ isModalOpen, dispatch, cartItems }) => {
       type: "CLOSE_MODAL",
     });
   };
+
+  React.useEffect(() => {
+    if (isModalOpen) {
+      gsap.fromTo(
+        document.querySelectorAll(
+          ".cartModal .cartItem, .cartModal .cartPromoCode, .cartModal .cartItemFeatured"
+        ),
+        {
+          x: 20,
+          opacity: 0,
+        },
+        {
+          x: 0,
+          opacity: 1,
+          duration: 0.5,
+          stagger: 0.2,
+          delay: 0.25,
+        }
+      );
+    }
+  }, [isModalOpen]);
 
   return (
     <div className={`cartModal ${isModalOpen ? "cartModal_visible" : ""}`}>
