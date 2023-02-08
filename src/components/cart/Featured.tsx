@@ -1,5 +1,6 @@
 import * as React from "react";
 import { CartItem as CartItemType } from "../../types";
+import Arrow from "../../images/arrow.png";
 import { connect } from "react-redux";
 
 interface Props {
@@ -35,7 +36,8 @@ const CartFeatured: React.FC<Props> = ({ item, dispatch }) => {
             </div>
           </div>
           <button className="cartItemFeatured--btn" onClick={handleAddItem}>
-            Add now
+            <span>Add now</span>
+            <img src={Arrow} alt="Arrow" />
           </button>
         </div>
       </div>
